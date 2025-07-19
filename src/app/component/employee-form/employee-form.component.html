@@ -1,18 +1,61 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <input matInput placeholder="Name" formControlName="name" required />
-    <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email" required />
-    <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
-    <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Position" formControlName="position" required />
-    <mat-error *ngIf="form.get('position')?.hasError('required')">Position is required</mat-error>
-  </mat-form-field>
-  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+<div class="card position-absolute top-50 start-50 translate-middle mx-auto p-2" style="width: 18rem;">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="needs-validation">
+
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name</label>
+    <input type="text" id="firstName" class="form-control"
+           [class.is-invalid]="form.get('firstName')?.invalid && form.get('firstName')?.touched"
+           formControlName="firstName" required>
+    <div class="invalid-feedback" *ngIf="form.get('firstName')?.errors?.['required']">
+      First name is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.get('firstName')?.errors?.['minlength']">
+      First name must be at least 2 characters.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name</label>
+    <input type="text" id="lastName" class="form-control"
+           [class.is-invalid]="form.get('lastName')?.invalid && form.get('lastName')?.touched"
+           formControlName="lastName" required>
+    <div class="invalid-feedback" *ngIf="form.get('lastName')?.errors?.['required']">
+      Last name is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.get('lastName')?.errors?.['minlength']">
+      Last name must be at least 2 characters.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" id="email" class="form-control"
+           [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+           formControlName="email" required>
+    <div class="invalid-feedback" *ngIf="form.get('email')?.errors?.['required']">
+      Email is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.get('email')?.errors?.['email']">
+      Enter a valid email.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="position" class="form-label">Position</label>
+    <input type="text" id="position" class="form-control"
+           [class.is-invalid]="form.get('position')?.invalid && form.get('position')?.touched"
+           formControlName="position" required>
+    <div class="invalid-feedback" *ngIf="form.get('position')?.errors?.['required']">
+      Position is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="form.get('position')?.errors?.['minlength']">
+      Position must be at least 3 characters.
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
     {{ isEdit ? 'Update' : 'Add' }} Employee
   </button>
+
 </form>
+</div>

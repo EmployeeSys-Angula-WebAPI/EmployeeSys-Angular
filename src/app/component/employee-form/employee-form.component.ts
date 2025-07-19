@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee-form',
@@ -16,6 +17,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     ReactiveFormsModule,
     RouterModule,
+    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -35,12 +37,14 @@ export class EmployeeFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      position: ['', Validators.required]
-    });
+  ) 
+  {
+   this.form = this.fb.group({
+  firstName: ['', Validators.required],
+  lastName: ['', Validators.required],
+  email: ['', [Validators.required, Validators.email]],
+  position: ['', Validators.required]
+});
   }
 
   ngOnInit(): void {

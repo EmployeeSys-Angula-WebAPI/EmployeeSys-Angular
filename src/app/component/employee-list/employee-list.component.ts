@@ -17,6 +17,9 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 
+import { ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-employee-list',
   standalone: true,
@@ -42,7 +45,7 @@ export class EmployeeListComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
 
-  displayedColumns: string[] = ['name', 'email', 'position', 'actions'];
+  displayedColumns: string[] = [' firstName', 'lastName', 'email', 'position', 'actions'];
 
   constructor(
     private employeeService: EmployeeService,
@@ -69,7 +72,7 @@ export class EmployeeListComponent implements OnInit {
 
   searchEmployees(): void {
     this.filteredEmployees = this.employees.filter(employee =>
-      employee.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+       `${employee.firstName} ${employee.lastName}`.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     this.currentPage = 1;
     this.updateDataSource();

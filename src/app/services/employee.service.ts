@@ -5,7 +5,7 @@ import { Employee } from '../models/employee.model';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
-  private apiUrl = 'https://localhost:7154/api/Employees'; // Change to your API
+  private apiUrl = 'https://localhost:7154/api/Employees'; 
 
   constructor(private http: HttpClient) {}
 
