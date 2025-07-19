@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name" required />
+    <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required />
+    <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Position" formControlName="position" required />
+    <mat-error *ngIf="form.get('position')?.hasError('required')">Position is required</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    {{ isEdit ? 'Update' : 'Add' }} Employee
+  </button>
+</form>
